@@ -7,7 +7,7 @@ use alloy_rpc_types::{
     AccessList, AccessListItem, Signature, Transaction,
 };
 
-
+use std::fmt::{Display, LowerHex};
 
 
 #[derive(Deserialize, Serialize, Debug, Clone, Default)]
@@ -150,4 +150,17 @@ impl TryFrom<&str> for Blocknumber {
         let val = hex_to_u64(value.to_string())?;
         Ok(Blocknumber(val))
     }
+}
+
+
+pub fn hex_to_u64(hex: String) -> Result<U64, TypeError> {
+    U64::from_str_radix(&hex, 16).map_err(|e| TypeError::HexToU64Error(e.to_string()))
+}
+
+
+pub fn to_hex<T>(num: T) -> String
+where
+    T: Display + LowerHex,
+{
+    format!("{:#x}", num)
 }
