@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "blockchain-node",
+    "eth-types"
+]
+
+exclude = []

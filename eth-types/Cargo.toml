@@ -1,0 +1,9 @@
+[package]
+name = "eth-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+alloy = "0.1.0"
+alloy-primitives = "0.6.4"
+alloy-rpc-types = "0.0.0-reserved"
