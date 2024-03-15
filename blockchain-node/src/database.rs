@@ -6,6 +6,14 @@ use rocksdb::{Options,DB};
 const PATH: &str = "./../.tmp";
 const DATABASE_NAME: &str = "db";
 
+pub trait Storage: Clone + Sync + Send + 'static {
+    fn new(database_name: Option<&str>) -> Result<Self>;
+    fn get_keys<K: AsRef<[u8]>>(&self) -> Result<Vec<Box<[u8]>>>;
+    fn delete(database_name: Option<&str>) -> Result<()>;
+
+
+
+}
 
 pub(crate) struct Database {
     db:rocksdb::DB,
